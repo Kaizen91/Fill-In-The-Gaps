@@ -8,8 +8,20 @@ import re, os
 def fillInTheGaps(folder, prefix):
 
     #create a regex using the prefix
-    prefixRegex = re.compile( r'(%s)(/d*)')
-    #loop through each file in a folder
+    prefixRegex = re.compile( r'(%s)(/d*)(.?)' %(prefix))
+
+    allfiles = os.listdir(folder).sort()
+
+    #loop through each file in the folder
+    for filename in allfiles:
+   
+            mo = prefixRegex.search(filename)
+            #move on if there is no match
+            if mo == None:
+                continue
+    
+            newfilename = mo.group(1) + str(i) + mo.group(3)
+
     #have an integer variable starting at 1
     #for each file compare the prefix to the regex
     #if it matches add the integer var to the end and increment the integer
